@@ -10,5 +10,14 @@ package examen1p2_wilmerzuniga;
  * @author wilme
  */
 public class Fortaleza extends Personajes{
+
+    public Fortaleza(String Nombre, int Vida, int Escudo, Armas Arma) {
+        super(Nombre, Vida, Escudo, Arma);
+    }
+
+    public Fortaleza() {
+    }
+    
+    
     
 }

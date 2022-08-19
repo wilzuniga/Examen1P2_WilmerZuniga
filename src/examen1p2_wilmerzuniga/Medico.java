@@ -10,5 +10,12 @@ package examen1p2_wilmerzuniga;
  * @author wilme
  */
 public class Medico extends Personajes {
+
+    public Medico(String Nombre, int Vida, int Escudo, Armas Arma) {
+        super(Nombre, Vida, Escudo, Arma);
+    }
+
+    public Medico() {
+    }
     
 }

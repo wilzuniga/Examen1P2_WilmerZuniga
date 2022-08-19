@@ -6,5 +6,12 @@
 package examen1p2_wilmerzuniga;
 
 public class Ratreador extends Personajes{
+
+    public Ratreador(String Nombre, int Vida, int Escudo, Armas Arma) {
+        super(Nombre, Vida, Escudo, Arma);
+    }
+
+    public Ratreador() {
+    }
     
 }

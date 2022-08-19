@@ -201,7 +201,13 @@ public class Login extends javax.swing.JFrame {
         });
     }
     //Variables mias que se miran horribles por que el java culero no me deja ponerlas abajo
-    private ArrayList <Jugadores> JugadoresA = new ArrayList();
+    public static ArrayList <Jugadores> JugadoresA = new ArrayList();
+
+    public static ArrayList<Jugadores> getJugadoresA() {
+        return JugadoresA;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Contraseña_TF;
     private javax.swing.JPanel Fondo;
