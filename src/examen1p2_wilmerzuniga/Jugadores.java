@@ -20,6 +20,15 @@ public class Jugadores {
         this.Personaje = new Personajes();
     }
 
+    public Jugadores(String Nombre, int Id, String Contraseña, Personajes Personaje) {
+        this.Nombre = Nombre;
+        this.Id = Id;
+        this.Contraseña = Contraseña;
+        this.Personaje = Personaje;
+    }
+    
+    
+
     public Jugadores() {
     }
 

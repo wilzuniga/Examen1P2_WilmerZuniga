@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examen1p2_wilmerzuniga;
 
 import java.awt.Frame;
@@ -19,6 +14,10 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        JugadoresA.add(new Jugadores("Lechuga", 543, "contraseña", (new Medico("LifeLine", 100, 50, (new Armas("FlatLine", 10, 80))))));
+        JugadoresA.add(new Jugadores("Loco Bryan", 23, "contraseña", (new Ratreador("Vantage", 100, 50, (new Armas("PeaceFinder", 30, 40))))));
+        JugadoresA.add(new Jugadores("Dr Nuila", 2, "contraseña", (new Fortaleza("Gibby", 125, 75, (new Armas("Carabina", 15, 90))))));
+
     }
 
     /**
@@ -157,8 +156,8 @@ public class Login extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         JugadoresA.add(new Jugadores(NombreUsuario_TF.getText(), Contraseña_TF.getText()));
-        javax.swing.JOptionPane.showMessageDialog(this, "Intento de login con los datos:\nUsuario: " + JugadoresA);
-        
+        //javax.swing.JOptionPane.showMessageDialog(this, "Intento de login con los datos:\nUsuario: " + JugadoresA);
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CosoJuego().setVisible(true);
@@ -201,13 +200,13 @@ public class Login extends javax.swing.JFrame {
         });
     }
     //Variables mias que se miran horribles por que el java culero no me deja ponerlas abajo
-    public static ArrayList <Jugadores> JugadoresA = new ArrayList();
+    public static ArrayList<Jugadores> JugadoresA = new ArrayList();
 
     public static ArrayList<Jugadores> getJugadoresA() {
         return JugadoresA;
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Contraseña_TF;
     private javax.swing.JPanel Fondo;
