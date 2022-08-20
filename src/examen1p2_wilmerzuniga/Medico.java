@@ -9,7 +9,7 @@ package examen1p2_wilmerzuniga;
  *
  * @author wilme
  */
-public class Medico extends Personajes {
+public class Medico extends Personajes implements Atacar {
 
     public Medico(String Nombre, int Vida, int Escudo, Armas Arma) {
         super(Nombre, Vida, Escudo, Arma);
@@ -17,5 +17,17 @@ public class Medico extends Personajes {
 
     public Medico() {
     }
-    
+
+    @Override
+    public Personajes Atacar(Personajes Atacante, Personajes Atacado) {
+        if (Atacado instanceof Ratreador ) {
+            Atacado.setVida(Atacado.getVida() - (Atacante.getArma().getDaño() + (Atacante.getArma().getDaño() % 5)));
+        } else {
+            Atacado.setVida(Atacado.getVida() - (Atacante.getArma().getDaño()));
+
+        }
+
+        return Atacado;
+    }
+
 }

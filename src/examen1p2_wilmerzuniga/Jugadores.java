@@ -9,15 +9,14 @@ public class Jugadores {
     String Nombre;
     int Id;
     String Contraseña;
-    int min = 1;
-    int max = 5000;
+
     Personajes Personaje;
 
     public Jugadores(String Nombre, String Contraseña) {
         this.Nombre = Nombre;
         this.Id = (int)(Math.random()*(5000-1+1)+1);
         this.Contraseña = Contraseña;
-        this.Personaje = new Personajes();
+        //this.Personaje = new Personajes();
     }
 
     public Jugadores(String Nombre, int Id, String Contraseña, Personajes Personaje) {
@@ -66,8 +65,9 @@ public class Jugadores {
 
     @Override
     public String toString() {
-        return "Jugadores{" + "Nombre=" + Nombre + ", Id=" + Id + ", Contrase\u00f1a=" + Contraseña + ", Personaje=" + Personaje + '}';
+        return Nombre + "   [ " + Id + " ]" ;
     }
+
     
     
     

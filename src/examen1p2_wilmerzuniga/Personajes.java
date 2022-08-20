@@ -1,6 +1,6 @@
 package examen1p2_wilmerzuniga;
 
-public class Personajes {
+public abstract class Personajes implements Atacar{
    String Nombre;
    int Vida;
    int Escudo;
@@ -52,6 +52,10 @@ public class Personajes {
     public String toString() {
         return "Personajes{" + "Nombre=" + Nombre + ", Vida=" + Vida + ", Escudo=" + Escudo + ", Arma=" + Arma + '}';
     }
-   
+
+
+
+
+    
    
 }

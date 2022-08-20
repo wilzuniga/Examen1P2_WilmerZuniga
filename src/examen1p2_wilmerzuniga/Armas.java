@@ -42,6 +42,8 @@ public class Armas {
     public String toString() {
         return "Armas{" + "Nombre=" + Nombre + ", Da\u00f1o=" + Daño + ", Precision=" + Precision + '}';
     }
+
+
     
     
 }

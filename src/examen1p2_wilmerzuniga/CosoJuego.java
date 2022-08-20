@@ -7,21 +7,33 @@ package examen1p2_wilmerzuniga;
 
 import static examen1p2_wilmerzuniga.Login.JugadoresA;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 
 public class CosoJuego extends javax.swing.JFrame {
 
-    
     public CosoJuego() {
         initComponents();
         PersonajesA.add(new Fortaleza("Gibby", 125, 75, (new Armas("Carabina", 15, 90))));
         PersonajesA.add(new Medico("LifeLine", 100, 50, (new Armas("FlatLine", 10, 80))));
         PersonajesA.add(new Ratreador("Vantage", 100, 50, (new Armas("PeaceFinder", 30, 40))));
         cargarCombobox();
+        cargarCombobox2();
+        CrearJugadores();
 
         PewPew.add(new Armas("CreaViudas", 20, 30));
         PewPew.add(new Armas("Jeringa", 60, 20));
         PewPew.add(new Armas("Cosa", 20, 30));
+        
+        if(JugadoresA.size()==0){
+            Date Final=new Date();
+            
+            int TiempoJug = Final.getMinutes() - inicio.getMinutes();
+            
+            
+        }
+        
+        
 
     }
 
@@ -41,9 +53,6 @@ public class CosoJuego extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        GameTab = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         CreationTab = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -65,6 +74,16 @@ public class CosoJuego extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         EscudoTF1 = new javax.swing.JFormattedTextField();
         VidaTF1 = new javax.swing.JFormattedTextField();
+        GameTab = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        AtaqueID = new javax.swing.JTextField();
+        botonatk = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,29 +145,6 @@ public class CosoJuego extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Seleccion", SelectionTab);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout GameTabLayout = new javax.swing.GroupLayout(GameTab);
-        GameTab.setLayout(GameTabLayout);
-        GameTabLayout.setHorizontalGroup(
-            GameTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(GameTabLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        GameTabLayout.setVerticalGroup(
-            GameTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(GameTabLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
-        );
-
-        jTabbedPane5.addTab("Juegar", GameTab);
-
         jLabel3.setText("Nombre");
 
         jLabel4.setText("Escudo");
@@ -164,6 +160,8 @@ public class CosoJuego extends javax.swing.JFrame {
         jLabel6.setText("Arma");
 
         jLabel7.setText("tIPO");
+
+        CBTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fortaleza", "Medico", "Ratreador" }));
 
         jPanel3.setBackground(new java.awt.Color(153, 255, 153));
         jPanel3.setForeground(new java.awt.Color(153, 255, 102));
@@ -259,10 +257,10 @@ public class CosoJuego extends javax.swing.JFrame {
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(DañoTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(35, 35, 35)
-                            .addGroup(CreationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(PrecisionTFF, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(CreationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(PrecisionTFF)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(178, 178, 178)))
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(416, 416, 416))
@@ -312,6 +310,112 @@ public class CosoJuego extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Crear", CreationTab);
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel9.setText("Restantes:");
+
+        jPanel4.setBackground(new java.awt.Color(102, 255, 102));
+
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("      Comenzar");
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+        );
+
+        jLabel16.setText("Atacar:");
+
+        AtaqueID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtaqueIDActionPerformed(evt);
+            }
+        });
+
+        botonatk.setBackground(new java.awt.Color(255, 0, 0));
+
+        jLabel17.setBackground(new java.awt.Color(255, 0, 51));
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("          ATACAR");
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout botonatkLayout = new javax.swing.GroupLayout(botonatk);
+        botonatk.setLayout(botonatkLayout);
+        botonatkLayout.setHorizontalGroup(
+            botonatkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+        );
+        botonatkLayout.setVerticalGroup(
+            botonatkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout GameTabLayout = new javax.swing.GroupLayout(GameTab);
+        GameTab.setLayout(GameTabLayout);
+        GameTabLayout.setHorizontalGroup(
+            GameTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GameTabLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(GameTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GameTabLayout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(248, 248, 248))
+                    .addGroup(GameTabLayout.createSequentialGroup()
+                        .addGroup(GameTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(GameTabLayout.createSequentialGroup()
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(AtaqueID, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonatk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 25, Short.MAX_VALUE))))
+        );
+        GameTabLayout.setVerticalGroup(
+            GameTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GameTabLayout.createSequentialGroup()
+                .addGroup(GameTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(GameTabLayout.createSequentialGroup()
+                        .addGap(430, 430, 430)
+                        .addComponent(botonatk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(GameTabLayout.createSequentialGroup()
+                        .addGroup(GameTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(GameTabLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel9))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GameTabLayout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addGroup(GameTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(AtaqueID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+
+        jTabbedPane5.addTab("Jugar", GameTab);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -353,22 +457,69 @@ public class CosoJuego extends javax.swing.JFrame {
         jComboBox1.setModel(m);
     }
 
+    private void cargarCombobox2() {
+        DefaultComboBoxModel m = (DefaultComboBoxModel) jComboBox1.getModel();
+
+        for (Armas armas : PewPew) {
+            m.addElement(armas);
+
+            //System.out.println(personajes.toString());
+        }
+        CBArmas.setModel(m);
+    }
+
+    private void CrearJugadores() {
+        for (int i = 0; i < 60; i++) {
+            if (i == 0) {
+
+            } else {
+                String Nombre = "";
+                for (int j = 0; j < 10; j++) {
+                    int aleatorio = (int) (Math.random() * ((122 - 97) + 1)) + 97;
+                    Nombre += ((char) aleatorio) + "";
+                }
+
+                int Id = (int) (Math.random() * ((100 - 50) + 1)) + 50;;
+
+                String Contra = "";
+                for (int j = 0; j < 10; j++) {
+                    //(Math.random() * ((122 - 97) + 1)) + 97;
+                    int aleatorio = (int) (Math.random() * ((122 - 97) + 1)) + 97;
+                    ;
+                    Contra += ((char) aleatorio) + "";
+                }
+
+                int vida = (int) (Math.random() * ((100 - 50) + 1)) + 50;;
+
+                int escudo = (int) (Math.random() * ((100 - 0) + 1)) + 0;;
+
+                int cosoaleat = (int) (Math.random() * ((PersonajesA.size() - 1 - 0) + 1)) + 0;;
+
+                Personajes Personaje = PersonajesA.get(cosoaleat);
+
+                Login.getJugadoresA().add(new Jugadores(Nombre, Id, Contra, Personaje));
+            }
+        }
+    }
+
+
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
      }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         Login.getJugadoresA().get(0).setPersonaje((Personajes) jComboBox1.getSelectedItem());
-        javax.swing.JOptionPane.showMessageDialog(this, "Intento de login con los datos:\nUsuario: " + JugadoresA);
+        //javax.swing.JOptionPane.showMessageDialog(this, "Intento de login con los datos:\nUsuario: " + JugadoresA);
 
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+
         if (CBTipo.getSelectedItem() instanceof Medico) {
-            PersonajesA.add(new Medico((NombreTF.getText()), (Integer.parseInt(PrecisionTFF.getText())), Integer.parseInt(DañoTF.getText()), (Armas) CBArmas.getSelectedItem()));
+            PersonajesA.add(new Medico((NombreTF.getText()), (Integer.parseInt(VidaTF1.getText())), Integer.parseInt(DañoTF.getText()), PewPew.get(0)));
         } else if (CBTipo.getSelectedItem() instanceof Fortaleza) {
-            PersonajesA.add(new Fortaleza((NombreTF.getText()), (Integer.parseInt(PrecisionTFF.getText())), Integer.parseInt(DañoTF.getText()), (Armas) CBArmas.getSelectedItem()));
+            PersonajesA.add(new Fortaleza((NombreTF.getText()), (Integer.parseInt(VidaTF1.getText())), Integer.parseInt(DañoTF.getText()), PewPew.get(0)));
         } else {
-            PersonajesA.add(new Ratreador((NombreTF.getText()), (Integer.parseInt(PrecisionTFF.getText())), Integer.parseInt(DañoTF.getText()), (Armas) CBArmas.getSelectedItem()));
+            PersonajesA.add(new Ratreador((NombreTF.getText()), (Integer.parseInt(VidaTF1.getText())), Integer.parseInt(DañoTF.getText()), PewPew.get(0)));
         }
     }//GEN-LAST:event_jLabel8MouseClicked
 
@@ -387,6 +538,47 @@ public class CosoJuego extends javax.swing.JFrame {
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         PewPew.add(new Armas(jTextField4.getText(), Integer.parseInt(DañoTF.getText()), Integer.parseInt(PrecisionTFF.getText())));
     }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+
+        for (Jugadores jugads : Login.getJugadoresA()) {
+            jTextArea1.append(jugads.toString() + "\n");
+        }
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void AtaqueIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtaqueIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AtaqueIDActionPerformed
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        //ACACAAAAAAAAAAAAAAAAAAR
+        inicio = new Date();
+        for (int i = 0; i < JugadoresA.size(); i++) {
+            if(JugadoresA.get(i).getId() == Integer.parseInt(AtaqueID.getText())){
+                JugadoresA.get(i).getPersonaje().Atacar(JugadoresA.get(4).getPersonaje(), JugadoresA.get(i).getPersonaje());
+            }else{
+                for (int j = 0; j < 5; j++) {
+                    
+                }
+            }
+        }
+        
+        for (Jugadores jugads : Login.getJugadoresA()) {
+            jTextArea1.append(jugads.toString() + "\n");
+        }
+        
+        
+        for (int q = 0; q < JugadoresA.size(); q++) {
+            if(JugadoresA.get(q).getPersonaje().getVida()==0){
+                JugadoresA.remove(q);
+                jTextArea1.append(JugadoresA.get(q).getNombre() + "Ha muerto "+ "\n");
+
+            }
+        }
+
+        
+
+    }//GEN-LAST:event_jLabel17MouseClicked
 
     /**
      * @param args the command line arguments
@@ -429,9 +621,12 @@ public class CosoJuego extends javax.swing.JFrame {
     //Variables mias que se miran horribles por que el java culero no me deja ponerlas abajo
     public ArrayList<Personajes> PersonajesA = new ArrayList();
     public ArrayList<Armas> PewPew = new ArrayList();
+    public Date inicio;
+    public Date Final;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AtaqueID;
     private javax.swing.JComboBox<String> CBArmas;
     private javax.swing.JComboBox<String> CBTipo;
     private javax.swing.JPanel CreationTab;
@@ -442,13 +637,17 @@ public class CosoJuego extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField PrecisionTFF;
     private javax.swing.JPanel SelectionTab;
     private javax.swing.JFormattedTextField VidaTF1;
+    private javax.swing.JPanel botonatk;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -456,9 +655,11 @@ public class CosoJuego extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTextArea jTextArea1;
